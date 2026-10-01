@@ -185,7 +185,7 @@ function dpay(k){S.dp=k;S.tiss=0;const p=DP[k];show(`<div class="big">${p.e}</di
 <div class="card" style="cursor:default;text-align:left;font-size:14px"><b class="t">📜 Adon Sir er Cute Shortto</b>${p.t.map((x,i)=>`<div style="padding:4px 0">${i+1}. ${x}</div>`).join('')}</div>
 <button onclick="dpaying()">✅ Shob shortto mene taka dilam</button>${back}`)}
 function ts(d){S.tiss=Math.max(0,S.tiss+d);document.getElementById('tc').textContent=S.tiss;document.getElementById('dt').textContent=tk(DP[S.dp].p+S.tiss*30);document.getElementById('tq').textContent=S.tiss==0?'':S.tiss<4?'Chokh ektu bhije gese? Thik ache 🥹':'Eto tissue! Mone hoy Adon Sir o movie dekhe kede feleche 😭'}
-function dpaying(){S.tt=DP[S.dp].p+S.tiss*30;show(`<div class="coin">🪙</div><h2>${tk(S.tt)} Adon Sir er pocket e... 💨</h2><p id="ms" style="min-height:48px;font-size:18px"></p>`);
+function dpaying(){S.tt=DP[S.dp].p+S.tiss*30;show(`<div class="coin">🪙</div><h2>${tk(S.tt)} Adon Sir er pocket e... </h2><p id="ms" style="min-height:48px;font-size:18px"></p>`);
 cycle('ms',['Adon Sir taka gunchen... ek, dui, tin... ar ekta noton extra? 🤑','Adon Sir: "Shundor! Ebar mamla shuru kori, kolom ready!" ⚖️','Adon Sir comedy movie er list ber korchen: "Ei ta dekho, hasbe!" 🎬','Adon Sir coffee nilen: "Coffee thanda hoye gese, tobu kaj hobe!" ☕'],2000,blame)}
 
 function boss(){const t=S.tt||0,h=Math.round(t/2);show(`<h2>💼 Boss-der Shesh Kotha</h2><p style="opacity:.8;font-size:14px">Adon Sir (CEO) &amp; Meghla Apu (Owner), office er pichone...</p><div id="ch"></div><div id="bn"></div>`);
