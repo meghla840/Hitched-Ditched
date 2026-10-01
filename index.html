@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hitched &amp; Ditched</title>
+<style>
+:root{--navy:#0d1233;--black:#07081a;--pink:#ff5fa2;--purple:#8b5cf6;--card:#171b4a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 20% 0%,#2a1a66 0,var(--navy) 45%,var(--black) 100%);color:#fff;font-family:"Trebuchet MS",system-ui,sans-serif;overflow-x:hidden}
+#bg{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.fl{position:absolute;bottom:-40px;animation:up linear infinite;opacity:.5}
+@keyframes up{to{transform:translateY(-110vh) rotate(40deg)}}
+main{position:relative;max-width:480px;margin:0 auto;padding:14px 16px 40px;text-align:center}
+#tick{background:var(--pink);color:var(--black);font-weight:bold;font-size:13px;border-radius:99px;padding:6px 12px;margin-bottom:10px}
+h1{font-size:30px;margin:6px 0 2px;background:linear-gradient(90deg,var(--pink),var(--purple),#fff);-webkit-background-clip:text;background-clip:text;color:transparent;animation:pop 1s}
+.sub{opacity:.9;margin-bottom:12px}
+#score{display:inline-block;border:2px solid var(--purple);border-radius:99px;padding:5px 14px;font-size:13px;margin-bottom:6px}
+.screen{animation:in .8s both}
+@keyframes in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(.3)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
+.card{background:var(--card);border:2px solid var(--purple);border-radius:22px;padding:18px;margin:14px 0;cursor:pointer;transition:.3s;box-shadow:0 8px 30px #0008}
+.card:hover,.card:active{transform:scale(1.03);border-color:var(--pink)}
+.card .em{font-size:52px;display:block;animation:bob 2.4s ease-in-out infinite}
+.card.div .em{animation:shake 2s infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(6deg)}}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-10deg)}75%{transform:rotate(10deg)}}
+.card b.t{display:block;font-size:20px;margin:6px 0;color:var(--pink)}
+.price{display:inline-block;background:var(--pink);color:var(--black);font-weight:bold;border-radius:99px;padding:4px 14px;margin-top:8px}
+button{font:inherit;font-weight:bold;border:0;border-radius:99px;padding:13px 24px;margin:8px 4px;color:#fff;background:linear-gradient(90deg,var(--pink),var(--purple));cursor:pointer;animation:pulse 2.2s infinite}
+button.ghost{background:none;border:2px solid var(--purple);animation:none}
+button.sm{padding:6px 16px;margin:0 6px;font-size:20px;animation:none}
+@keyframes pulse{50%{transform:scale(1.05);box-shadow:0 0 18px var(--pink)}}
+input{font:inherit;width:100%;padding:12px 16px;margin:6px 0;border-radius:99px;border:2px solid var(--purple);background:var(--black);color:#fff;text-align:center}
+.bubble{background:#fff;color:var(--black);border-radius:20px;padding:16px;margin:16px 0;text-align:left;position:relative;font-size:16px;line-height:1.5}
+.bubble small{display:block;color:var(--purple);font-weight:bold;margin-bottom:4px}
+.bubble:after{content:"";position:absolute;top:-10px;left:30px;border:10px solid transparent;border-top:0;border-bottom-color:#fff}
+.big{font-size:64px;animation:bob 2.4s infinite}
+.cursor:after{content:"|";animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
+.coin{font-size:44px;display:inline-block;animation:spin 1.6s linear infinite}
+@keyframes spin{to{transform:rotateY(360deg)}}
+.conf{position:fixed;top:-20px;font-size:24px;animation:fall 5s linear forwards;pointer-events:none;z-index:9}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.bar{height:22px;border-radius:99px;background:var(--black);overflow:hidden;border:2px solid var(--purple);margin:6px 0 12px;text-align:left}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple));transition:width 3s}
+.pct{font-size:54px;font-weight:bold;color:var(--pink);animation:pop 1s}
+.cert{background:#fff;color:var(--navy);border:6px double var(--purple);border-radius:16px;padding:18px;margin:14px 0;animation:in 1s}
+.cert h3{margin:4px 0;color:var(--purple)}
+.stamp{display:inline-block;border:3px solid var(--pink);color:var(--pink);font-weight:bold;padding:4px 12px;border-radius:8px;transform:rotate(-10deg);animation:pop 1.2s .8s both}
+.slot{font-size:20px;font-weight:bold;color:var(--pink);min-height:70px;padding:12px;border:3px dashed var(--purple);border-radius:16px;margin:10px 0;display:flex;align-items:center;justify-content:center}
+.line{font-size:20px;margin:14px 0;animation:in .8s both}
+.row{display:flex;justify-content:space-between;text-align:left;padding:8px 0;border-bottom:1px dashed var(--purple);animation:in .8s both}
+@keyframes out{to{opacity:0;transform:translateY(-14px) scale(.9)}}
+#kc{min-height:100px}
+.kl{background:#fff;color:var(--black);border-radius:14px;padding:12px;margin:10px 0;text-align:left;font-size:16px;line-height:1.5;animation:in .8s both}
+.note{font-size:11px;opacity:.6;margin-top:24px}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<main>
+<div id="tick">🔔 Live: ...</div>
+<h1>💍 Hitched &amp; Ditched 🔨</h1>
+<div class="sub">"Jora lagai, jora bhangi — Terms &amp; Conditions apply!"</div>
+<div id="score"></div>
+<div id="app"></div>
+<div class="note">Payment fake, kono taka katbe na 😄</div>
+</main>
+<script>
+const app=document.getElementById('app'),bg=document.getElementById('bg');
+const R=a=>a[Math.floor(Math.random()*a.length)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const tk=n=>'৳'+n.toLocaleString('en-IN');
+let S={a:'',b:'',k:0,plan:null,mode:'',t:0},M=0,D=0;
+['💖','💜','💍','🌴','🕊️','✨'].forEach(e=>{for(let k=0;k<3;k++){const s=document.createElement('span');s.className='fl';s.textContent=e;s.style.left=Math.random()*95+'%';s.style.fontSize=(16+Math.random()*20)+'px';s.style.animationDuration=(14+Math.random()*12)+'s';s.style.animationDelay=(-Math.random()*20)+'s';bg.appendChild(s)}});
+const news=['Ekta jora ekhoni khejur kinte gelo 🌴','Aj shokal theke 17 ta jora hitched holo 💍','Adon Sir ekhon notun case dekhchen ⚖️','Meghla Apu ekta notun biyer shomborkho pathalen 💌','Kazi shaheb chai kheye ready ☕','Ekjon bhai amader 3 bar customer, shotti VIP! 👑','Ekta jora biye kore 5 minute e divorce er jonno ashlo 😂'];
+let ni=0;setInterval(()=>document.getElementById('tick').textContent='🔔 Live: '+news[++ni%news.length],6000);
+function title(){const t=M+D;return t==0?'Fresh Customer 🧳':t<3?'Regular Customer 🎫':t<5?'Hitch-Ditch Pro 🏅':'Boss Level 👑'}
+function sc(){document.getElementById('score').textContent=`💍 Hitched: ${M}  •  🔨 Ditched: ${D}  •  ${title()}`}sc();
+function confetti(a){a=a||['💖','🎉','💜','✨','🌴'];for(let i=0;i<30;i++){const c=document.createElement('div');c.className='conf';c.textContent=a[i%a.length];c.style.left=Math.random()*100+'vw';c.style.animationDelay=Math.random()*2+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),8000)}}
+function type(id,t,i=0){const el=document.getElementById(id);if(!el)return;el.textContent=t.slice(0,i);if(i<t.length){el.classList.add('cursor');setTimeout(()=>type(id,t,i+1),55)}else el.classList.remove('cursor')}
+function cycle(id,arr,ms,done){let i=0;const el=()=>document.getElementById(id);const f=()=>{if(el())el().textContent=arr[i++%arr.length]};f();const h=setInterval(f,ms);setTimeout(()=>{clearInterval(h);done()},ms*arr.length)}
+function show(h){app.innerHTML='<div class="screen">'+h+'</div>'}
+function seq(lines,id,done){let i=0;const n=()=>{if(i<lines.length){const d=document.createElement('div');d.className='line';d.textContent=lines[i++];document.getElementById(id).appendChild(d);setTimeout(n,3000)}else done()};n()}
+const back='<button class="ghost" onclick="home()">⬅ Shuru te fire jai</button>';
+
+function home(){sc();show(`
+<div class="card" onclick="names('m')"><span class="em">💍</span><b class="t">Hitch Me Up!</b>Notun jibon, notun khejur, notun jhogra 🥰 Ekhane jora lagano hoy!</div>
+<div class="card div" onclick="names('d')"><span class="em">🔨</span><b class="t">Ditch &amp; Dash!</b>Shanti-purno bidai 🌈 Ekhane jora bhanga hoy!</div>`)}
+
+function names(m){S.mode=m;S.k=0;show(`<div class="big">${m=='m'?'👰🤵':'🕊️🕊️'}</div>
+<h2>${m=='m'?'Dui jon er nam likho':'Kar kar jora bhangbo? Nam bolo'}</h2>
+<input id="n1" placeholder="Tomar nam 😎"><input id="n2" placeholder="${m=='m'?'Jar shathe jibon kaatbe 💕':'Jar shathe bidai nibe 🕊️'}">
+<button onclick="go()">Agiye jai 🚀</button>${back}`)}
+function go(){S.a=esc(document.getElementById('n1').value.trim()||'Hobu Bor');S.b=esc(document.getElementById('n2').value.trim()||'Hobu Bou');S.mode=='m'?match():reason()}
+
+function match(){show(`<h2>${S.a} 💞 ${S.b}</h2><p>Jora-Meter chalu hocche...</p><div class="bar"><i id="f"></i></div><p id="ms" style="min-height:48px;font-size:18px"></p>`);
+document.getElementById('f').style.transitionDuration='8s';setTimeout(()=>document.getElementById('f').style.width='100%',50);
+cycle('ms',['Ras-nokkhottro milano hocche... 🔮','Dujoner pochondo-er list dekha hocche 📝','Dekhchi dujon e chai khete bhalobashe ki na ☕','Wifi password share korte raji ki na check 📶'],2000,()=>{
+const p=S.pct=Math.floor(Math.random()*40)+60;
+const c=p>90?'Ekdom perfect jora! Ekhoni Kazi shaheb ke dako 😍':p>80?'Khub bhalo mil! Khejur ektu beshi kinle aro bhalo 🌴':p>70?'Beshi bhalo, tobe remote niye ektu jhogra hobei 📺':'Ektu kom, tobe bhalobasha thakle shob thik hoye jay 💖';
+show(`<div class="pct">${p}%</div><h3>Jora Match!</h3><p>${c}</p><button onclick="plans()">Biyer dhoron bachi 💍</button>`)})}
+
+const P={khejur:{n:'Khejur Fiesta 🌴',e:'🌴',d:'Kazi shaheb + mishti khejur + chhoto ek ghoroa biye. Shorol, shundor, amader moto!',items:[['Kazi shaheb 🕌',5000],['Khejur er tin 🌴',2000]]},
+event:{n:'Royal Jhakanaka 👑',e:'🎉',d:'Kazi shaheb + Registry Lawyer + stage + DJ + alo + "Biyer gaan". Kagoj-potro pakka, dhoom-dham shorgoroom!',items:[['Kazi shaheb 🕌',5000],['Registry Lawyer 📜⚖️',8000],['Event Manager + DJ 🎤',25000]]}};
+const sum=p=>p.items.reduce((s,i)=>s+i[1],0);
+function plans(){show(`<h2>Kon style e biye korbe? 🥰</h2>${Object.keys(P).map(k=>`<div class="card" onclick="pay('${k}')"><span class="em">${P[k].e}</span><b class="t">${P[k].n}</b>${P[k].d}<br><span class="price">${tk(sum(P[k]))}</span></div>`).join('')}${back}`)}
+
+function pay(k){S.plan=k;const p=P[k];
+show(`<div class="big">${p.e}</div><h2>${p.n}</h2><div class="card" style="cursor:default">
+${p.items.map(i=>`<div style="display:flex;justify-content:space-between;padding:5px 0"><span>${i[0]}</span><b>${tk(i[1])}</b></div>`).join('')}
+<hr style="border-color:var(--purple)"><div>🌴 Extra khejur? (৳50/ta)<br><button class="sm" onclick="kh(-1)">−</button><b id="kc" style="font-size:22px">0</b><button class="sm" onclick="kh(1)">+</button></div><p id="kq" style="font-size:14px;opacity:.9;min-height:22px"></p>
+<div style="display:flex;justify-content:space-between;font-size:18px"><b>Mot</b><b id="tt">${tk(sum(p))}</b></div></div>
+<button onclick="kobul()">💸 Taka dilam, ebar kobul bolbo!</button>${back}`)}
+function kh(d){S.k=Math.max(0,S.k+d);document.getElementById('kc').textContent=S.k;document.getElementById('tt').textContent=tk(sum(P[S.plan])+S.k*50);
+document.getElementById('kq').textContent=S.k==0?'':S.k<5?'Khejur ektu kom, mishti-r kosto hobe 😅':S.k<15?'Wah, khejur-premi manush! 😍':'Eto khejur! Ekta bagan e biye hobe ei bar 🌴🌴🌴'}
+
+const kb=['Kazi shaheb: "Hat joro koro, ar shobar shamne bolo: Kobul!" 🕌','Kazi shaheb: "Ei ta ki bolcho? Shashuri kane kom shonen, aro jore!" 📢','Kazi shaheb: "Last chance! Ektu hashi mukhe bolo, camera ache!" 📸😊'];
+let seenK=false,seenA=false;
+function kline(t){const c=document.getElementById('kc'),o=c.firstChild,put=()=>{c.innerHTML='<div class="kl">'+t+'</div>'};if(o){o.style.animation='out .4s forwards';setTimeout(put,400)}else put()}
+function kobul(){S.t=0;const sk=seenK;seenK=true;show(`<h2>Ebar kobul bolo! 🕌</h2><div class="card" style="cursor:default"><span class="em">🕌</span><b class="t">Kazi Shaheb</b><div id="kc"></div></div><div id="kb"></div>`);
+const strip=x=>x.replace(/^Kazi shaheb: /,'');const lines=(sk?[]:[wl('Nazim Bhai er jonno','Apni korben biye? Ok, thik ache, shuru kori!')]).concat([strip(kb[0])]);let i=0;
+const n=()=>{if(i<lines.length){kline(lines[i++]);setTimeout(n,3000)}else document.getElementById('kb').innerHTML='<button id="kbtn" onclick="kt()">🗣️ KOBUL!</button>'};n()}
+function kt(){S.t++;confetti(['🎉']);if(S.t<3){kline(kb[S.t].replace(/^Kazi shaheb: /,''));document.getElementById('kbtn').textContent=S.t==1?'🗣️ KOBUL KOBUL!':'🗣️ KOBUL KOBUL KOBUL!!'}else setTimeout(paying,1200)}
+
+const rev=['Shashuri: "Chele ta bhalo, tobe ranna ektu shikhte hobe 🍳"','Shashur: "Ami asholei khejur er jonno ashechi, biye ta bonus 🌴"','Bondhu: "Biriyani ta ektu kom chilo, tai 4 star ⭐⭐⭐⭐"','Khala: "Amar jonno o ekta jora khuje dao to 🥹"','Photographer: "Shobai hashun, ei bar shotti camera on ache 📸"'];
+function paying(){const t=sum(P[S.plan])+S.k*50;show(`<div class="coin">🪙</div><h2>${tk(t)} pathano hocche... 💨</h2><p id="ms" style="min-height:48px;font-size:18px"></p>`);
+const ev=S.plan=='event';
+cycle('ms',ev?['Kazi shaheb panjabi iron kore ready hocchen 🕌👔','Registry Lawyer ekta kolom niye 7 ta ID check korchen 📜🧐','Registry Lawyer: "Shob shoi koro, hat betha hole amar dosh nai!" ✍️','DJ bhai: "Biyer gaan er volume ektu beshi hobe!" 🎧🔊','Event Manager: "Stage er ful gula shob taja, shotti!" 🌸'].concat(['Shashuri bari te khobor gese, shobai kanna kati korchen 😭💖']):['Kazi shaheb bhat khacchen, ektu dara dite hobe 🍚','Khejur gulo ek ek kore bachai hocche, kharap gula Kazi shaheb er 😋🌴','Kazi shaheb: "Khejur ta mishti, tai biye ta o mishti hobe!" 🕌','Shashuri bari te khobor gese, shobai kanna kati korchen 😭💖'],2000,()=>{M++;sc();confetti();
+show(`<div class="big">🎊</div><h2>Mubarak ${S.a} &amp; ${S.b}! 🥳</h2>
+<div class="cert"><small>OFFICIAL</small><h3>💍 Hitched Certificate 💍</h3><p><b>${S.a}</b> ar <b>${S.b}</b> ekhon officially "Jora" 💞<br>Khejur: ${S.k+3} ta 🌴${ev?'<br>Registry: ✅ Pakka, Lawyer shaheb shoi diyechen 📜':''}</p><span class="stamp">HITCHED ✔</span><p style="font-size:14px">${R(rev)}</p></div>
+<div class="bubble"><small>👩‍💼 Meghla, Owner of Hitched &amp; Ditched</small><span id="m"></span></div>
+<button class="ghost" onclick="home()">🔁 Shuru te jai</button>`);
+const fm='Biye hoye gelo, tai khub khushi! 🥰 Kintu kokhono jodi biye bhangar proyojon hoy, plz amader kachei aisen!';type('m',fm);
+save({type:'Biye',name1:S.a,name2:S.b,match_percent:S.pct,plan:P[S.plan].n,extra_khejur:S.k,total_taka:t,final_message:fm})})}
+
+const why=['Remote niye roj-roj jhogra 📺','Ghumer shomoy naak dakar karone 😴','Ranna e lonka beshi hoye gese 🌶️','Biye er por selfie tola bondho 🤳','Shashuri bari boro beshi shokal shokal ashe 🏠','Biriyani er last piece ke khabe, ei niye juddho 🍗','Wifi password bhule jawar jonno doshi korano 📶','Ek bar "Tumi to boro bhalo" bolchilam, ekhon dekhi tai noy 😤','Phone e shobshomoy chat, amar dike tak e nei 📱','Pizza er last piece ke khabe, ei niye juddho 🍕','Mojo kine dilo na, ekhon shob shesh 🥤😤','Toggy te niye gelo na, shei dukkho ajo bhulte pari ni 🎢😭','Shudhu "ami ektu shanti chai" 🕊️'];
+function reason(){show(`<h2>${S.a} 🔨 ${S.b}</h2><p>Bhangar karon ki? Roulette bolbe! 🎰</p><div class="slot" id="sl">?</div><button id="sp" onclick="spin()">🎰 Ghurao</button>${back}`)}
+function spin(){document.getElementById('sp').style.display='none';let i=0;const h=setInterval(()=>document.getElementById('sl').textContent=R(why),450);
+setTimeout(()=>{clearInterval(h);S.reason=R(why);document.getElementById('sl').textContent='Karon: '+S.reason;app.querySelector('.screen').insertAdjacentHTML('beforeend','<button onclick="greet()">Thik ache, agai ➡️</button>')},4000)}
+
+function wl(ex,tail){const n=S.a.trim().toLowerCase();
+if(n=='rakib'||n=='nazim')return 'Bhai, apnar jonnoi to wait korchilam! 🤗';
+if(n=='oshi')return 'Apu, apnar jonnoi to wait korchilam! 🤗';
+return 'Ami to '+ex+' wait korchilam... oh, apni '+S.a+'! '+tail}
+function greet(){show(`<div class="big">🧐</div><div id="gl"></div><div id="nx"></div>`);
+const first=!seenA;seenA=true;
+seq(['Apnakei to khujchi amra! 🔍'].concat(first?['👨‍⚖️ Adon Sir (Partner): "'+wl('Rakib, Oshi Apu eder','Apnar jonno o wait korchilam!')+'"']:[],['Eto late keno ashlen?? Kotodin dhore wait korchi! 😤','Chai thanda hoye gese, tai ekta notun chai anchi ☕','Jak, ekhon ashchen, tai shob maf! 🤗']),'gl',()=>{document.getElementById('nx').innerHTML=`<p>${S.a} ar ${S.b} er jonno shera lawyer:</p>
+<div class="card" style="cursor:default"><span class="em">👨‍⚖️</span><b class="t">Adon Sir, Partner &amp; Chief Ditch Officer</b>"Jora jotoi shokto hok, ami shobi bhenge dibo!" ⚖️</div>
+<button onclick="call()">📞 Adon Sir ke call dao</button>${back}`})}
+function call(){show(`<div class="coin">☎️</div><h2>Adon Sir ke call kora hocche...</h2><p id="ms" style="min-height:48px;font-size:18px"></p>`);
+cycle('ms',['Ring ring... "Hello, Adon bolchi!" 📱','"Biye bhangar kotha? Ekdom ready!" 😎','Adon Sir kala kot pore nilen 🕶️','"Mamla ta shundor, ekhoni kaj shuru!" ⚖️'],2000,blame)}
+
+function blame(){const a=Math.floor(Math.random()*70)+15,b=100-a;S.ba=a;S.bb=b;show(`<h2>🔎 Dosh-Meter</h2><p>Kar dosh beshi? Adon Sir er rai:</p>
+<div style="text-align:left">${S.a}: <b>${a}%</b></div><div class="bar"><i id="b1"></i></div><div style="text-align:left">${S.b}: <b>${b}%</b></div><div class="bar"><i id="b2"></i></div>
+<p style="font-size:18px">${a==b?'Dujon e shoman!':a>b?S.a+' er dosh beshi 🙈':S.b+' er dosh beshi 🙈'} Tobe Adon Sir bolen, "Dosh dewa jhogra er mool noy, ami ektu ghumabo" 😴</p><button onclick="prop()">Shompotti bhag ➡️</button>`);
+['b1','b2'].forEach((id,i)=>{document.getElementById(id).style.transitionDuration='3s';setTimeout(()=>document.getElementById(id).style.width=(i?b:a)+'%',100)})}
+
+const items=['📺 Remote','📶 Wifi password','🍗 Biriyani er last piece','🎬 Netflix account','🐈 Biral ta','🤳 Shob selfie','🛋️ Shofa-r bhalo kona','🌴 Ghorer khejur'];
+function prop(){show(`<h2>⚖️ Shompotti Bhag-Batwara</h2><div id="pl"></div><div id="pn"></div>`);S.props=[];let i=0;
+const n=()=>{if(i<items.length){const w=Math.random()<.5?S.a:S.b;S.props.push(items[i]+' -> '+w);document.getElementById('pl').insertAdjacentHTML('beforeend',`<div class="row"><span>${items[i++]}</span><b>➡️ ${w}</b></div>`);setTimeout(n,1500)}else{document.getElementById('pn').innerHTML='<button onclick="mukti()">Final Mukti ➡️</button>'}};n()}
+
+function mukti(){D++;sc();confetti(['🕊️','⚖️','🌸','✨','💜']);
+show(`<div class="big">🕊️</div><h2>Mukti! Ditched hoye gele! 🎉</h2>
+<div class="cert"><small>OFFICIAL</small><h3>⚖️ Ditched Certificate ⚖️</h3><p><b>${S.a}</b> ar <b>${S.b}</b> ekhon theke "Free Bird" 🕊️</p><span class="stamp">DITCHED ✔</span></div>
+<div class="bubble"><small>👩‍💼 Meghla, Owner of Hitched &amp; Ditched</small><span id="m"></span></div>
+<button onclick="mcall()">📞 Meghla Apu ke call dao</button><button class="ghost" onclick="home()">🔁 Shuru te jai</button>`);
+const fd='Kono somossa nei! 😊 Biye ki ekta kore thakle hobe naki? Ekta bhenge geche, ekhon arekta dibo. Call korun amader Meghla ke, se apnar biyer bebosta kore dibe!';type('m',fd);
+save({type:'Divorce',name1:S.a,name2:S.b,reason:S.reason,blame_name1_percent:S.ba,blame_name2_percent:S.bb,property_split:(S.props||[]).join(' | '),final_message:fd})}
+function mcall(){show(`<div class="coin">☎️</div><h2>Meghla Apu ke call kora hocche...</h2><p id="ms" style="min-height:48px;font-size:18px"></p>`);
+cycle('ms',['Meghla Apu: "Hello! Notun biye? Ekdom!" 💖','"Pattor list ta ready kori" 📝','"Khejur ar Kazi dui-i ready" 🌴','"Ei bar khub bhalo jora khujbo!" 🥰'],2000,()=>names('m'))}
+let DB=null;
+const COLS=['time','type','name1','name2','match_percent','plan','extra_khejur','total_taka','reason','blame_name1_percent','blame_name2_percent','property_split','final_message'];
+const SHEET_URL='https://script.google.com/macros/s/AKfycbxV9ab5HQ_iYqhVXi9-Al-oUugN-wH6LFTb72KS-ayaLRYi7Vp7J4CWB1UCfYpWdlH4CQ/exec';
+async function save(rec){if(!SHEET_URL.startsWith('http'))return;rec.time=new Date().toISOString();try{await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(rec)})}catch(e){}}
+(async()=>{try{if(!window.claude)return;DB=await claude.use('db');const u=await claude.use('user');
+if(DB&&u&&await u.canEdit()){let c=0,t;document.querySelector('h1').addEventListener('click',()=>{c++;clearTimeout(t);t=setTimeout(()=>c=0,2000);if(c>=7){c=0;admin()}})}}catch(e){}})();
+async function admin(){show('<h2>📊 Shob Data</h2><p>Loading...</p>');try{const sn=await DB.collection('records').get();const rows=sn.docs.map(d=>d.data()).sort((x,y)=>String(y.time).localeCompare(String(x.time)));
+window._rows=rows;show(`<h2>📊 Shob Data (${rows.length})</h2><button onclick="csv()">⬇️ Google Sheet er jonno CSV</button><button class="ghost" onclick="home()">⬅ Fire jai</button>`+
+rows.map(r=>`<div class="card" style="cursor:default;text-align:left;font-size:14px"><b>${r.type=='Biye'?'💍':'🔨'} ${esc(r.name1||'')} &amp; ${esc(r.name2||'')}</b><br>${COLS.slice(4).filter(c=>r[c]!==undefined).map(c=>c+': '+esc(r[c])).join('<br>')}</div>`).join(''))}catch(e){show('<p>Data load hoy nai 😔</p>'+back)}}
+async function csv(){const q=v=>'"'+String(v===undefined?'':v).replace(/"/g,'""')+'"';const t='\ufeff'+COLS.join(',')+'\n'+window._rows.map(r=>COLS.map(c=>q(r[c])).join(',')).join('\n');
+try{const d=await claude.use('downloads');await d.save({filename:'hitched-and-ditched-data.csv',data:t})}catch(e){}}
+
+const SECRET='#/team-only-9x';
+let _c=0,_t;
+document.querySelector('h1').addEventListener('click',()=>{_c++;clearTimeout(_t);_t=setTimeout(()=>_c=0,2000);if(_c>=7){_c=0;location.hash=SECRET}});
+function route(){if(location.hash===SECRET)admin()}
+addEventListener('hashchange',route);
+async function admin(){show(`<h2>🔐 Team Dashboard</h2><input id="pk" type="password" placeholder="Passcode"><button onclick="loadD()">Kholo</button><button class="ghost" onclick="location.hash='';home()">⬅ Fire jai</button>`)}
+async function loadD(){const k=document.getElementById('pk').value;show('<h2>Data ana hocche... ⏳</h2>');
+try{const r=await fetch(SHEET_URL+'?key='+encodeURIComponent(k));const j=await r.json();
+if(!j.ok){show('<h2>❌ Passcode thik na</h2><button onclick="admin()">Abar chesta</button>');return}
+const rows=j.rows.reverse(),m=rows.filter(x=>x.type=='Biye').length;
+const lab={match_percent:'Match %',plan:'Plan',extra_khejur:'Extra khejur',total_taka:'Mot taka',reason:'Jhogra er karon',blame_name1_percent:'Dosh (prothom jon) %',blame_name2_percent:'Dosh (dwitiyo jon) %',property_split:'Shompotti bhag',final_message:'Final message'};
+show(`<h2>📊 Team Dashboard</h2><p>💍 Biye: <b>${m}</b> • 🔨 Divorce: <b>${rows.length-m}</b></p><button onclick="loadD2('${esc(k)}')">🔄 Refresh</button><button class="ghost" onclick="location.hash='';home()">⬅ Bahire jai</button>`+
+rows.map(r=>`<div class="card" style="cursor:default;text-align:left;font-size:14px"><b style="font-size:17px;color:var(--pink)">${r.type=='Biye'?'💍':'🔨'} ${esc(r.name1||'')} &amp; ${esc(r.name2||'')}</b><br><small style="opacity:.7">${esc(new Date(r.time).toLocaleString())}</small><br>`+
+Object.keys(lab).filter(c=>r[c]!==''&&r[c]!==undefined).map(c=>`<b>${lab[c]}:</b> ${esc(r[c])}`).join('<br>')+`</div>`).join(''))
+}catch(e){show('<h2>Data load hoy nai 😔</h2><button onclick="admin()">Abar chesta</button>')}}
+function loadD2(k){admin();setTimeout(()=>{document.getElementById('pk').value=k;loadD()},50)}
+home();route();
+</script>
+</body>
+</html>
